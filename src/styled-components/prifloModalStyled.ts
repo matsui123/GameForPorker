@@ -58,7 +58,8 @@ export const Button = styled.button<{color: string, fontColor?: string}>`
     width: 100px;
     background-color: ${({color}) => color};
     color: ${({fontColor}) => fontColor};
-    font-size: 1.4rem;
+    border: solid 2px;
+    font-size: 1.1rem;
 `;
 
 export const Count = styled.div`

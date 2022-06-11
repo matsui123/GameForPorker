@@ -58,7 +58,7 @@ export const Button = styled.button<{color: string, fontColor?: string}>`
     width: 100px;
     background-color: ${({color}) => color};
     color: ${({fontColor}) => fontColor};
-    border: solid 2px;
+    border: 2px solid black;
     font-size: 1rem;
 `;
 

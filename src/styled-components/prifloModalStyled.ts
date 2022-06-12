@@ -54,10 +54,9 @@ export const Card = styled.div<{color: string}>`
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 40px;
-    background: linear-gradient(transparent 60%, ${({color}) => color} 0%);
     color: black
 `;
-
+// background: linear-gradient(transparent 60%, ${({color}) => color} 0%);
 export const AnswerBox = styled.div`
     height: 100%;
     display: flex;

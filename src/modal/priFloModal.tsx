@@ -67,16 +67,24 @@ export const PriFloModal: React.FC<ModalProps> = React.memo(({modalIsOpen, close
         closeModal();
     }
     //カードのアンダーラインの色情報取得
-    const getColorInfo = (card: any):string => {
-        let color="white";
-        if(!!card){
-            color = card[0] === card[2]
-            ? "#ff4500"
-            : card[3] === "s"
-            ? "#008080"
-            : "#778899"
-        }
-        console.log(color);
+    const getColorInfo = (card: string):string => {
+        let color="red";
+        // if(!!card){
+        //     const ex = card.split(' ');
+        //     console.log(ex);
+        //     let str="";
+        //     if(ex[0] === ex[1]){
+        //         console.log("poket")
+        //         color = "#ff4500"
+        //     }else{
+        //         if(ex[1].length > 2){
+        //             str = ex[1][2];
+        //         }else{
+        //             str = str[1][2];
+        //         }
+        //     }
+        //     color = str == "s" ? "#008080" : "#778899"
+        // }
         return color;
     }
 

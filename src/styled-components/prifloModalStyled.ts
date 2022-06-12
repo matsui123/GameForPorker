@@ -30,6 +30,17 @@ export const AnswerButtonContainer = styled.div`
     justify-content: space-between;
 `;
 
+export const EndButtonContiner = styled(AnswerButtonContainer)`
+    justify-content: space-around;
+`;
+
+export const CorrectBox = styled.div`
+    text-align: center;
+    font-size: 20px;
+    margin: 0 50px;
+    border-bottom: solid 10px #87CEFA;
+`;
+
 export const CloseButtonContainer = styled.div`
     flex: 1 1 5%;
     border: 2px solid black;
@@ -37,12 +48,14 @@ export const CloseButtonContainer = styled.div`
     justify-content: space-around;
 `;
 
-export const Card = styled.div`
+export const Card = styled.div<{color: string}>`
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 40px;
+    background: linear-gradient(transparent 60%, ${({color}) => color} 0%);
+    color: black
 `;
 
 export const AnswerBox = styled.div`
@@ -78,4 +91,10 @@ export const PorkerGameContainer = styled.div`
     justify-content: space-around;
     flex-direction: column;
     margin-top: 300px;
+`;
+
+export const CommonButton = styled.button`
+    border-radius: 10px;
+    margin: 0 50px;
+    height: 40px;
 `;

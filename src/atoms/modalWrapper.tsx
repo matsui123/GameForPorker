@@ -1,6 +1,6 @@
 import Modal, { Styles } from 'react-modal';
 import { memo } from 'react';
-import { ModalProps } from '../priFloModal';
+import { ModalProps } from '../modal/priFloModal';
 
 type Props = ModalProps & any;
 export const ModalWrapper: React.FC<Props>= memo(({modalIsOpen, children, closeModal}) => {

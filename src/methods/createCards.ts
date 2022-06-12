@@ -45,7 +45,7 @@
         {card :"A 8s", rank :4},
         {card :"A 8o", rank :6},
         {card :"A 9s", rank :4},
-        {card :"A 9o", rank :4},
+        {card :"A 9o", rank :5},
         {card :"A 10s", rank :2},
         {card :"A 10o", rank :4},
         {card :"A Js", rank :2},

@@ -1,65 +1,83 @@
 import React, { useState, useMemo, useRef } from 'react';
-import ALLCARDS, { AllCardsType, ANSWER, AnswerRank } from './methods/createCards';
-import {ModalWrapper} from './atoms/modalWrapper';
-import * as MSC from './styled-components/prifloModalStyled';
+import ALLCARDS, { AllCardsType, ANSWER, AnswerRank } from '../methods/createCards';
+import {ModalWrapper} from '../atoms/modalWrapper';
+import * as MSC from '../styled-components/prifloModalStyled';
+import { AllAnswerButton } from '../module/allAnswerButton';
+import { EndAllCard } from '../module/endAllCard';
 
 export type ModalProps = {
     modalIsOpen: boolean,
     closeModal: () => void,
 }
 
+const CORRECT = "正解";
+const WRONG = "不正解";
+
 export const PriFloModal: React.FC<ModalProps> = React.memo(({modalIsOpen, closeModal}) => {
 
-    //表示させる
+    //全レンジ格納
     const [cards , setCards] = useState<AllCardsType[]>([]);
+    //間違ったレンジ格納
+    const [wrongAns, setWrongAns] = useState<AllCardsType[]>([]);
+    //乱数格納
     const [random, setRandom] = useState<number>(0);
+    //ボタン表示フラグ
     const [isDisabled, setIsDisabled] = useState<boolean>(false);
+
     //カード取得
     useMemo(() => setCards([...ALLCARDS]),[ALLCARDS]);
 
+    //cards情報更新用メソッド
+    const updateCards = (prop: AllCardsType[]) => setCards([...prop]);
 
     //臨時
     const [correct, setCorrect] = useState<string>("");
 
-
+    //メソッド分割してもいいかも
     const next = (answerRank: number) => {
         //回答判定
+        //正解
         const correctRank = cards[random].rank;
-        const ans = correctRank === answerRank ? "正解" : "不正解";
+        //回答判断
+        const ans = correctRank === answerRank ? CORRECT : WRONG;
+        //正解のランクと人数
         const num = AnswerRank.filter(ar => ar.rank === correctRank)[0];
         const correct = `${ans} ${num.answer}`;
         setCorrect(correct);
+        //間違った回答保存
+        if(ans === WRONG) setWrongAns(wrong => [...wrong, cards[random]]);
 
         //TODO: 0.5秒だけ正解のボタンの枠を赤枠に変える
-
         console.log("回答"+answerRank);
         console.log("正しい回答"+cards[random].rank);
         //選択されたカード削除
         const cardsAfterDelete = cards.filter(card=> card !== cards[random]);
         setCards(cardsAfterDelete);
-        if(cardsAfterDelete.length === 0) setIsDisabled(true);
+
+        //カードが0枚の時、ボタンを非活性にする
+        //if(cardsAfterDelete.length === 0) setIsDisabled(true);
+
         //ランダムな数生成して、stateにセット
         const r = (Math.floor(Math.random() * cards.length));
         const rr = r > 0 ? r-1 : r;
         setRandom(rr);
     }
-    //button表示　コンポーネントにしてもいいかも
-    const answerButton = (ans:any[]) => {
-        return ans.map(answer =>
-        <MSC.Button
-            disabled={isDisabled}
-            key={answer.answer}
-            color={answer.color}
-            fontColor={answer.fontColor}
-            onClick={() => next(answer.rank)}
-        >
-            {answer.answer}
-        </MSC.Button>);
-    }
-
     //モーダルclose
     const onClose = () => {
         closeModal();
+    }
+    //カードのアンダーラインの色情報取得
+    const getColorInfo = (card: any):string => {
+        let color="white";
+        if(!!card){
+            color = card[0] === card[2]
+            ? "#ff4500"
+            : card[3] === "s"
+            ? "#008080"
+            : "#778899"
+        }
+        console.log(color);
+        return color;
     }
 
     return(
@@ -70,32 +88,32 @@ export const PriFloModal: React.FC<ModalProps> = React.memo(({modalIsOpen, close
             <MSC.ModalContainer>
                 {/* カード表示部 */}
                 <MSC.CardContainer>
-                    <MSC.Card>
+                    <MSC.Card color={getColorInfo(cards[random]?.card)}>
                         {cards[random]?.card}
                     </MSC.Card>
                     <MSC.Count>
-                        {cards.length}/169
+                        {cards.length}/{ALLCARDS.length}
                     </MSC.Count>
                 </MSC.CardContainer>
                 {/* 答え表示部：臨時 */}
                 <MSC.CorrectAnswer>
                     {correct}
                 </MSC.CorrectAnswer>
-                {/* 回答ボタン 　コンポーネント切り分けてもいい*/}
-                <MSC.AnswerButtonContainer>
-                    <MSC.AnswerBox>
-                        {answerButton(ANSWER[0])}
-                    </MSC.AnswerBox>
-                    <MSC.AnswerBox>
-                        {answerButton(ANSWER[1])}
-                    </MSC.AnswerBox>
-                    <MSC.AnswerBox>
-                        {answerButton(ANSWER[2])}
-                    </MSC.AnswerBox>
-                    <MSC.AnswerBox>
-                        {answerButton(ANSWER[3])}
-                    </MSC.AnswerBox>
-                </MSC.AnswerButtonContainer>
+                {
+                    cards.length > 0
+                    ?   <AllAnswerButton
+                            isDisabled={isDisabled}
+                            next={next}
+                        />
+                    :    <EndAllCard
+                            updateCards={updateCards}
+                            wrongAnswer={wrongAns}
+                        />
+                }
+                {/* <AllAnswerButton
+                    isDisabled={isDisabled}
+                    next={next}
+                /> */}
                 {/* 戻る　＆　保存 */}
                 <MSC.CloseButtonContainer>
                     <MSC.CloseButton onClick={onClose}>

@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import ALLCARDS from './methods/createCards';
-import { PriFloModal } from './priFloModal';
+import { PriFloModal } from './modal/priFloModal';
 import * as MSC from './styled-components/prifloModalStyled';
 
 const App = React.memo(() => {

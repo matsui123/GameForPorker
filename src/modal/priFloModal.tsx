@@ -112,7 +112,7 @@ export const PriFloModal: React.FC<ModalProps> = React.memo(({modalIsOpen, close
                         {cards[random]?.card}
                     </MSC.Card>
                     <MSC.Count>
-                        {cards.length}/{!!clickedCard ? 25 : ALLCARDS.length}
+                        {cards.length}
                     </MSC.Count>
                 </MSC.CardContainer>
                 {/* 答え表示部：臨時 */}

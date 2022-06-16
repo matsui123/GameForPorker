@@ -49,7 +49,7 @@
         {card :"A 10s", rank :2},
         {card :"A 10o", rank :4},
         {card :"A Js", rank :2},
-        {card :"A Jo", rank :4},
+        {card :"A Jo", rank :3},
         {card :"A Qs", rank :2},
         {card :"A Qo", rank :2},
         {card :"A Ks", rank :1},

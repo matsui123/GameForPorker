@@ -8,12 +8,13 @@ import { EndAllCard } from '../module/endAllCard';
 export type ModalProps = {
     modalIsOpen: boolean,
     closeModal: () => void,
+    clickedCard?: string,
 }
 
 const CORRECT = "正解";
 const WRONG = "不正解";
 
-export const PriFloModal: React.FC<ModalProps> = React.memo(({modalIsOpen, closeModal}) => {
+export const PriFloModal: React.FC<ModalProps> = React.memo(({modalIsOpen, closeModal, clickedCard}) => {
 
     //全レンジ格納
     const [cards , setCards] = useState<AllCardsType[]>([]);
@@ -24,8 +25,19 @@ export const PriFloModal: React.FC<ModalProps> = React.memo(({modalIsOpen, close
     //ボタン表示フラグ
     const [isDisabled, setIsDisabled] = useState<boolean>(false);
 
+    useMemo(() => {
+        if(!!clickedCard){
+            console.log(clickedCard);
+            const selectedCard = ALLCARDS.filter((card: AllCardsType) => card.card.includes(clickedCard));
+            setCards([...selectedCard]);
+        }else{
+            console.log("何も選択されてない")
+            setCards([...ALLCARDS]);
+        }
+    },[clickedCard, ALLCARDS]);
+
     //カード取得
-    useMemo(() => setCards([...ALLCARDS]),[ALLCARDS]);
+    //useMemo(() => setCards([...ALLCARDS]),[ALLCARDS]);
 
     //cards情報更新用メソッド
     const updateCards = (prop: AllCardsType[]) => setCards([...prop]);
@@ -100,7 +112,7 @@ export const PriFloModal: React.FC<ModalProps> = React.memo(({modalIsOpen, close
                         {cards[random]?.card}
                     </MSC.Card>
                     <MSC.Count>
-                        {cards.length}/{ALLCARDS.length}
+                        {cards.length}/{!!clickedCard ? 25 : ALLCARDS.length}
                     </MSC.Count>
                 </MSC.CardContainer>
                 {/* 答え表示部：臨時 */}

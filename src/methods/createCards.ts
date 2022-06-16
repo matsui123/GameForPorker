@@ -5,27 +5,27 @@
 
     export const ANSWER = [
         [
-            {answer: "S:8~9人", rank: 1, color: "#000056", fontColor: "white"},
-            {answer: "A:8~9人", rank: 2, color: "#d91326", fontColor: "white"},
+            {answer: "1:8~9人", rank: 1, color: "#000056", fontColor: "white"},
+            {answer: "2:8~9人", rank: 2, color: "#d91326", fontColor: "white"},
         ],[
-            {answer: "B:6~7人", rank: 3, color: "#ffcc33", fontColor: "black"},
-            {answer: "C:4~5人", rank: 4, color: "#2e8b57", fontColor: "black"},
+            {answer: "3:6~7人", rank: 3, color: "#ffcc33", fontColor: "black"},
+            {answer: "4:4~5人", rank: 4, color: "#2e8b57", fontColor: "black"},
         ],[
-            {answer: "D:3人", rank: 5, color: "#1e90ff", fontColor: "black"},
-            {answer: "E:2人", rank: 6, color: "#ffffff", fontColor: "black"},
+            {answer: "5:3人", rank: 5, color: "#1e90ff", fontColor: "black"},
+            {answer: "6:2人", rank: 6, color: "#ffffff", fontColor: "black"},
         ],[
-            {answer: "F:FOLD", rank: 7, color: "#77787B", fontColor: "black"},
+            {answer: "7:FOLD", rank: 7, color: "#77787B", fontColor: "black"},
         ]
     ]
 
     export const AnswerRank = [
-        {answer: "S:8~9人", rank: 1, color: "#000056", fontColor: "white"},
-        {answer: "A:8~9人", rank: 2, color: "#d91326", fontColor: "white"},
-        {answer: "B:6~7人", rank: 3, color: "#ffcc33", fontColor: "black"},
-        {answer: "C:4~5人", rank: 4, color: "#2e8b57", fontColor: "black"},
-        {answer: "D:3人", rank: 5, color: "#1e90ff", fontColor: "black"},
-        {answer: "E:2人", rank: 6, color: "#ffffff", fontColor: "black"},
-        {answer: "F:FOLD", rank: 7, color: "#77787B", fontColor: "black"},
+        {answer: "1:8~9人", rank: 1, color: "#000056", fontColor: "white"},
+        {answer: "2:8~9人", rank: 2, color: "#d91326", fontColor: "white"},
+        {answer: "3:6~7人", rank: 3, color: "#ffcc33", fontColor: "black"},
+        {answer: "4:4~5人", rank: 4, color: "#2e8b57", fontColor: "black"},
+        {answer: "5:3人", rank: 5, color: "#1e90ff", fontColor: "black"},
+        {answer: "6:2人", rank: 6, color: "#ffffff", fontColor: "black"},
+        {answer: "7:FOLD", rank: 7, color: "#77787B", fontColor: "black"},
     ];
 
     const ALLCARDS: AllCardsType[] =[
